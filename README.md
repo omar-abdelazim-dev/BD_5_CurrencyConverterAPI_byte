@@ -1,6 +1,6 @@
 # Arbitrage Currency Converter API
 
-B.Y.T.E Backend Task 5, deployed as a Vercel-ready serverless API. It converts supported currencies using live exchange data and compares live Bitcoin pricing from Coinbase and Binance.
+B.Y.T.E Backend Task 5, deployed as a Vercel-ready serverless API. It converts supported currencies using live exchange data and compares live Bitcoin pricing from Coinbase and Binance.US.
 
 ## Endpoints
 

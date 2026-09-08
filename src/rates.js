@@ -12,7 +12,7 @@ export async function convert({ from, to, amount, fetchFn = fetch }) {
 export async function arbitrage({ fetchFn = fetch }) {
   const [coinbase, binance] = await Promise.all([
     fetchFn('https://api.exchange.coinbase.com/products/BTC-USD/ticker'),
-    fetchFn('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT')
+    fetchFn('https://api.binance.us/api/v3/ticker/price?symbol=BTCUSDT')
   ]);
   if (!coinbase.ok || !binance.ok) throw new Error('One or more Bitcoin exchanges are unavailable.');
   const [coinbaseData, binanceData] = await Promise.all([coinbase.json(), binance.json()]);
