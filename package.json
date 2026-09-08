@@ -1,0 +1,1 @@
+{"name":"bd-5-currency-converter-api-byte","version":"1.0.0","type":"module","scripts":{"start":"node src/server.js","test":"node --test"},"engines":{"node":">=22.5"},"dependencies":{"express":"^5.1.0"},"devDependencies":{"supertest":"^7.1.4"}}

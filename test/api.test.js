@@ -1,0 +1,4 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import request from 'supertest'; import { createApp } from '../src/app.js';
+const fakeFetch=async url=>({ok:true,json:async()=>url.includes('frankfurter')?{date:'2026-09-08',rates:{EUR:.85}}:url.includes('coinbase')?{price:'100000'}:{price:'100500'}});
+test('converts with source and timestamp',async()=>{const r=await request(createApp({fetchFn:fakeFetch})).get('/api/convert?from=USD&to=EUR&amount=100');assert.equal(r.status,200);assert.equal(r.body.data.convertedAmount,85);assert.equal(r.body.data.source,'Frankfurter');});
+test('rejects invalid currencies and reports live arbitrage',async()=>{const app=createApp({fetchFn:fakeFetch});assert.equal((await request(app).get('/api/convert?from=XXX&to=USD&amount=2')).status,400);const r=await request(app).get('/api/arbitrage/btc');assert.equal(r.status,200);assert.equal(r.body.data.percentageDifference,.5);});
